@@ -1,42 +1,41 @@
 <?php
-
 class Node
 {
-	private $value;
-	private $left = null;
-	private $right = null;
+    private $value;
+    private $left = null;
+    private $right = null;
 
-	public function __construct(int $value)
-	{
-		$this->value = $value;
-	}
+    public function __construct(int $value)
+    {
+       $this->value = $value;
+    }
 	
-	public function getValue()
-	{
-		return $this->value;
-	}
+    public function getValue()
+    {
+	return $this->value;
+    }
 
-	public function insert(Node $node)
-	{
+    public function insert(Node $node)
+    {
     	if ($node->getValue() == $this->value) {
            return;
         }
 
-		if ($node->getValue() > $this->value) {
-			$this->insertRight($node);
+	if ($node->getValue() > $this->value) {
+	    $this->insertRight($node);
             return;
-		}
+	}
         
         $this->insertLeft($node);
         
-	}
+    }
     
     private function insertRight(Node $node)
     {
     	if (is_null($this->right)) {
-			$this->right = $node;
-        	return;
-		}
+	   $this->right = $node;
+           return;
+	}
             
         $this->left->insert($node);
     }
@@ -44,23 +43,23 @@ class Node
     private function insertLeft(Node $node)
     {
     	if (is_null($this->left)) {
-			$this->left = $node;
-        	return;
-		}
+	    $this->left = $node;
+            return;
+	}
             
         $this->left->insert($node);
     }
     
-  	public function getNodeThree(&$value)
+    public function getNodeThree(&$value)
     {	
         $value[] = $this->value;	
    
         if (!is_null($this->right)) {
-        	$this->right->getNodeThree($value);
+            $this->right->getNodeThree($value);
         }
 
         if (!is_null($this->left)) {
-        	$this->left->getNodeThree($value);
+            $this->left->getNodeThree($value);
         }  
     }
   
